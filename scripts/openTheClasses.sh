@@ -1,7 +1,7 @@
 #! /bin/bash
 
 tmux_popup_session_name="[M+c]-easifem-classes"
-docs="${HOME}/Dropbox/easifem/easifem-classes/"
+docs="${easifem}/classes/"
 
 if [ "$(tmux display-message -p -F "#{session_name}")" = "${tmux_popup_session_name}" ];then
     tmux detach-client

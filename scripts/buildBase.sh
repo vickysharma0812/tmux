@@ -1,19 +1,20 @@
-#! /bin/bash
+#!/bin/bash
 
 session="buildBase"
 # cmd="easifem install base --no-download"
-cmd="echo Hello"
-# session=whatever
+cmd="easifem dev base"
 window=${session}:0
 pane=${window}.4
 
-if [ "$(tmux display-message -p -F "#{session_name}")" = "${session}" ];then
-    tmux detach-client
+if [ "$(tmux display-message -p -F "#{session_name}")" = "${session}" ]; then
+  tmux detach-client
 else
-tmux send-keys -t "$pane" C-z 'some -new command' Enter
-tmux select-pane -t "$pane"
-tmux select-window -t "$window"
-# tmux attach-session -t "$session"
-    tmux popup -d '#{pane_current_path}' -xR -yC -w30% -h70% -E\
-      "tmux new-session -A -s ${session}"
+  # Create new session with the session name
+  tmux new-session -d -s "$session"
+
+  # Send the command to the session
+  tmux send-keys -t "$session" "$cmd" Enter
+
+  # Create a popup window that runs the command directly (fish-compatible)
+  tmux display-popup -d '#{pane_current_path}' -xR -yC -w30% -h100% -E "fish -c '$cmd; echo \"Press Enter to close...\"; read'"
 fi
