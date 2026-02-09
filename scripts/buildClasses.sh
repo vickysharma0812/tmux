@@ -2,7 +2,7 @@
 
 session="buildClasses"
 # cmd="easifem install base --no-download"
-cmd="easifem dev classes"
+cmd="easifem dev classes -q &&  easifem install classes --no-download -q"
 window=${session}:0
 pane=${window}.4
 
