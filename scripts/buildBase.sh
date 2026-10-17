@@ -16,6 +16,6 @@ else
   # tmux send-keys -t "$session" "$cmd" Enter
 
   # Create a popup window that runs the command directly (fish-compatible)
-  # tmux display-popup -d '#{pane_current_path}' -xR -yC -w30% -h100% -E "fish -c '$cmd; echo \"Press Enter to close...\"; read'"
-  tmux display-popup -d '#{pane_current_path}' -xC -yC -w30% -h30% -E "fish -c '$cmd & disown'"
+  tmux display-popup -d '#{pane_current_path}' -xC -yC -w30% -h30% -E "fish -c '$cmd; echo \"Press Enter to close...\"; read'"
+  # tmux display-popup -d '#{pane_current_path}' -xC -yC -w30% -h30% -E "fish -c '$cmd & disown'"
 fi
